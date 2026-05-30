@@ -61,8 +61,8 @@ Or install from a requirements file (see below).
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Chinmay-Mahajan/Basic-Implementation-of-RAG
+cd Basic-Implementation-of-RAG
 ```
 
 ### 2. Install dependencies
