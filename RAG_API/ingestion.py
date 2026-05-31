@@ -17,3 +17,5 @@ class Ingestor():
     def save_emb(self):
         self.index = VectorStoreIndex.from_documents(self.documents , embed_model = self.embedding_model , transformations=[self.splitter])
         self.index.storage_context.persist("./storage")
+
+    

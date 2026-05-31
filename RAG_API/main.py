@@ -86,7 +86,7 @@ class RAGpipeline():
             self.splitter = SentenceSplitter(chunk_overlap=chunk_overlap , chunk_size=chunk_size) # we use this to split the documents into chunks
             self.index = VectorStoreIndex.from_documents(self.documents , embed_model = self.emb_model , transformations=[self.splitter])
 
-        # performs chunking , embedding , and stores vectors in such a way that similarity searches are efficient
+            # performs chunking , embedding , and stores vectors in such a way that similarity searches are efficient
         self.retriver = self.index.as_retriever(similarity_top_k = 10) # returns a retriever object by which we can retrieve the top_k number of chunks given a input query based on similarity
         self.show_node = show_node
         self.show_mem = show_mem # shows chat memory after each assitant user exchange
