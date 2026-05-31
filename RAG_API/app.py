@@ -80,6 +80,14 @@ def upload_files(files: List[UploadFile] = File(...)):
             }
 
 
+@app.post('/refresh')
+def refresh():
+    ra.refresh_index()
+    return {
+        "status":"success"
+    }
+
+
 
 
 

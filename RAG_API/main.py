@@ -11,6 +11,7 @@ from llama_index.core import load_index_from_storage
 import json 
 import numpy as np 
 import os 
+import shutil
 
 from prompts import qw_raw
 from prompts import qa_prompt_tmpl
@@ -132,6 +133,16 @@ class RAGpipeline():
             print(node.text)
             print("-"*100)
         print("-"*100)   
+
+
+    def refresh_index(self):
+        if os.path.exists("./storage"):
+            shutil.rmtree("./storage")
+        self.ingestor.save_emb()
+        storage_context = StorageContext.from_defaults(persist_dir="./storage")
+        self.index = load_index_from_storage(storage_context,embed_model=self.emb_model)
+        self.retriver = self.index.as_retriever(similarity_top_k=10)
+
 
 
 class QueryRewriter():
