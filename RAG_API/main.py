@@ -136,12 +136,14 @@ class RAGpipeline():
 
 
     def refresh_index(self):
-        if os.path.exists("./storage"):
+        if os.path.exists("./storage"): # if ./storage exists then remove it 
             shutil.rmtree("./storage")
-        self.ingestor.save_emb()
+        self.ingestor = Ingestor(self.dir_path,chunk_overlap=20,chunk_size=200)  #make another ingestor object (because the ingestor object has 
+        #this ---> self.documents = SimpleDirectoryReader(input_dir=input_dir , exclude_empty=True).load_data()) , meaning it read the dir when it was initalised , hence we have to make another object to overwrite the old one
+        self.ingestor.save_emb() # save the embeddings to the local storage
         storage_context = StorageContext.from_defaults(persist_dir="./storage")
         self.index = load_index_from_storage(storage_context,embed_model=self.emb_model)
-        self.retriver = self.index.as_retriever(similarity_top_k=10)
+        self.retriver = self.index.as_retriever(similarity_top_k=10) # reset the retriver too , (SAME ISSUE AS THE BUG PREVIOUSLY FOUND OUT)
 
 
 
