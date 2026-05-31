@@ -1,0 +1,12 @@
+Kabir
+Role: The Protagonist / The Observer
+
+Age/Status: Early 20s, final-year postgraduate student (likely specializing in Data Science or Computer Science).
+
+Visual Profile: Unremarkable, slightly gaunt from weeks of sleep deprivation. Eyes permanently bloodshot from monitor glare; comfortable in oversized t-shirts and an ergonomic office chair that has seen better days.
+
+Personality & Psychology: Kabir is driven by an intense, almost obsessive intellectual curiosity. He isn't looking to change the world; he is looking to solve puzzles. When faced with an anomaly, his first instinct isn't fear—it’s optimization. He has the classic "sandbox mindset" of a coder, viewing reality as a system governed by strict logic and rules. This logical bias is his tragic flaw; he assumes that because he can model something on a screen, he is safe behind it.
+
+Motivation: Initially, academic validation (building a bulletproof thesis algorithm). Later, it shifts into pure, addictive curiosity as he tries to uncover the "glitch" in the city's data.
+
+Functional Role: He represents the modern digital citizen—incredibly powerful behind a keyboard, but utterly vulnerable when the physical world overrides the digital one.

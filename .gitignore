@@ -1,5 +1,17 @@
+# Mac
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
 venv/
 .venv/
 rag_env/
-__pycache__/
-*.pyc
+
+# Persisted vector storage
+RAG_API/storage/
+
+# VSCode
+.vscode/

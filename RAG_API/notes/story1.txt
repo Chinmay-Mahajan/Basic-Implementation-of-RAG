@@ -1,0 +1,100 @@
+The rain over New Delhi didn’t fall; it pressurized. It turned the midnight air into a humid, gray static that muffled the sound of the overhead Metro.
+
+Inside the third-floor apartment, Kabir didn't notice the weather. His entire world was bounded by the 27-inch glow of his monitor. For the past three weeks, he had been building a behavioral predictor—a lightweight, neural-network-driven tracking algorithm designed to parse open-source traffic cameras, public transit logs, and digital footprints to map routine anomalies. It was supposed to be his thesis masterpiece.
+
+Instead, it was turning into a digital ghost story.
+
+At 2:14 AM, the terminal window flashed amber.
+
+[ALERT]: ANOMALY DETECTED IN DATASET_B_DELHI_METRO
+[RECURRENCE]: 100% (STRICT TEMPORAL/SPATIAL COINCIDENCE)
+[MATCH COEFFICIENT]: 0.998
+
+Kabir leaned forward, the wheels of his office chair groaning. He blinked away the grit in his eyes and pulled up the raw logs.
+
+The algorithm wasn't tracking a person. It was tracking a gap.
+
+Every Tuesday and Friday for the past six months, across three different major intersections in the city, the public surveillance feeds experienced a micro-stutter—exactly four frames of dropped data. That was roughly 133 milliseconds of missing time. A standard network glitch, or maybe a faulty encoder.
+
+But Kabir’s code hadn't flagged the glitch. It had flagged what happened immediately after it.
+
+Every time the frames dropped, the localized cellular tower logs reported a sudden, instantaneous drop in battery percentage—by exactly 12%—for every single smartphone within a fifty-meter radius. Simultaneously, a specific, unindexed MAC address would momentarily broadcast a single packet of encrypted UDP data into the ether, before vanishing.
+
+"A hardware-level stingray?" Kabir muttered to himself, typing rapidly. A rogue cell-site simulator used for intercepting data? No, a stingray didn't drain batteries instantly, nor did it cause local camera feeds to drop frames physically.
+
+He wrote a quick script to trace the geographic coordinates of the last three packet broadcasts.
+
+The coordinates didn't map to a government building, a data center, or a crowded marketplace. They intersected perfectly at a single, abandoned railway warehouse just outside the old city limits.
+
+Then, his monitor went entirely black.
+
+The sudden darkness in the room was absolute, save for the faint green status light on his router. Kabir froze. His hands hovered over the mechanical keyboard.
+
+A power cut?
+
+No. The router was still up. The fan in the corner was still whirring.
+
+Slowly, characters began to paint themselves across the black screen in a standard, unformatted courier font. Not a system notification. A direct terminal write.
+
+You are looking at the seams, Kabir.
+
+His heart slammed against his ribs. He grabbed his phone from the desk. The screen read 0% Battery, and then the device died completely.
+
+The monitor blinked again.
+
+Go to the window.
+
+Kabir felt a cold sweat break out across the back of his neck. Every instinct yelled at him to pull the power plug from the wall, to run out into the damp monsoon night. Instead, drawn by a terrifying, magnetic curiosity, he stood up.
+
+He walked to the window and pushed the glass pane open. The humid air hit his face. Three floors down, the street was entirely dark. The streetlights were dead.
+
+But it wasn't the darkness that made his breath catch. It was the silence.
+
+The relentless hum of the city, the distant barking of stray dogs, the drone of the highway—gone. The entire block felt insulated, trapped in a vacuum.
+
+Down on the narrow asphalt street, a lone figure stood directly under the dead streetlight. They were wearing a dark, unexceptional raincoat, looking straight up at Kabir’s window.
+
+The figure didn't move. They didn't wave. They just held up a small, rectangular device that emitted a faint, pulsing blue status light.
+
+133 milliseconds.
+
+Kabir realized with sudden, horrific clarity what his algorithm had actually found. The dropped frames weren't a glitch in the cameras. The battery drains weren't a glitch in the phones.
+
+Someone had built a localized, high-energy electromagnetic dampener—a device capable of momentarily pausing localized electronic recording and power grids to move through the city completely unseen. A physical eraser. And they used the UDP packets to ping a central node, confirming their untraceable passage.
+
+They weren't hiding from the government. They were the government's ghost. And Kabir had just mapped their entire operational route.
+
+Behind him, his computer speaker let out a sharp, high-pitched whine.
+
+He spun around. The monitor had lit up again, displaying a real-time video feed.
+
+It was a view of a dimly lit stairwell. The concrete walls looked familiar. The cracked green paint on the banister was unmistakable. It was the stairwell of his own apartment building.
+
+At the bottom of the screen, a timestamp was ticking up in milliseconds.
+
+The camera angle was moving upward. Smooth. Unhurried. Stepping up the stairs, climbing toward the third floor.
+
+Whoever was wearing the camera stopped at the second-floor landing. They paused, reached into their pocket, and pulled out a small black cylinder.
+
+On Kabir's desk, his backup power supply began to click frantically. The LED lights on his router started to dim, flickering like dying embers. The fan in the corner slowed to a pathetic crawl, its hum dropping in pitch until it stopped entirely.
+
+The ambient power in the room was being siphoned away.
+
+Kabir lunged for the door, throwing the heavy brass deadbolt into place. He backed away into the center of the room, his eyes locked on the space beneath the doorframe.
+
+The video feed on his monitor stuttered.
+
+[ALERT]: SYSTEM VOLTAGE CRITICAL
+[ALERT]: DROPPING FRAMES...
+
+The screen began to tear, horizontal lines of digital noise cutting through the image of the stairwell. The camera on the screen was now standing right outside his door. A shadow blocked the faint light from the hallway.
+
+Then, the monitor died for good. The router went dark. Total collapse of the grid.
+
+In the pitch black of his apartment, Kabir heard the distinct, metallic click of his front door's deadbolt sliding open from the outside, smoothly, as if turning an invisible key.
+
+The door creaked open.
+
+The damp smell of rain rushed into the room, accompanied by the faint, rhythmic pulse of a blue light reflecting off the walls.
+
+"Kabir," a quiet, neutral voice spoke from the dark. "You have an exceptionally efficient algorithm. Let's talk about where it's going to run next."
