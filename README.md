@@ -169,6 +169,25 @@ Response:
 }
 ```
 
+Upload Files into the input_dir folder (also updating the model's index)
+
+```bash
+ curl -X POST \
+  "http://127.0.0.1:8000/upload" \
+  -F "files=@PATH_TO_FILE
+```
+
+Response:
+
+```json
+{
+ "uploaded_files":[...],
+ "not_uploaded_files":[...],
+ "status": "..."
+}
+
+```
+
 ---
 
 ## Configuration
