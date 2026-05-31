@@ -1,6 +1,8 @@
 # Local RAG Chatbot with Query Rewriting
 
-A fully local Retrieval-Augmented Generation (RAG) chatbot built with [LlamaIndex](https://github.com/run-llama/llama_index), [Ollama](https://ollama.com/), and HuggingFace embeddings. Ask questions over your own notes or documents — everything runs on your machine, no API keys required.
+A fully local Retrieval-Augmented Generation (RAG) system built with [LlamaIndex](https://github.com/run-llama/llama_index), [Ollama](https://ollama.com/), and HuggingFace embeddings. Ask questions over your own notes or documents — everything runs on your machine, no API keys required.
+
+Available in two modes: an interactive CLI for local use and a FastAPI server for programmatic access.
 
 ---
 
@@ -8,10 +10,11 @@ A fully local Retrieval-Augmented Generation (RAG) chatbot built with [LlamaInde
 
 - **Local LLM** — Powered by Llama 3 (8B) via Ollama; no external API calls
 - **Semantic Search** — Embeds document chunks using `sentence-transformers/all-MiniLM-L6-v2`
-- **Query Rewriting** — A dedicated LLM agent rewrites and expands user queries before retrieval, improving search accuracy
+- **Query Rewriting** — A dedicated LLM pass rewrites and expands user queries before retrieval, improving search accuracy and resolving pronouns using chat history
+- **Manual Reranking** — Retrieved chunks are re-scored using cosine similarity against the rewritten query to surface the most relevant context
 - **Conversation Memory** — Maintains a rolling chat history buffer so follow-up questions resolve correctly
-- **Configurable Chunking** — Tune `chunk_size` and `chunk_overlap` to fit your documents
-- **Debug Mode** — Optionally display retrieved nodes and memory state after each turn
+- **Persistent Index** — Embeddings are computed once and saved to disk; subsequent runs skip re-indexing
+- **Two Interfaces** — Run as an interactive CLI or expose a REST endpoint via FastAPI
 
 ---
 
@@ -19,19 +22,22 @@ A fully local Retrieval-Augmented Generation (RAG) chatbot built with [LlamaInde
 
 ```
 User Query
-    │
-    ▼
+    |
+    v
 QueryRewriter (LLM)
-    │  Strips noise, resolves pronouns using chat history
-    │  Returns a list of refined sub-queries
-    ▼
+    |  Resolves pronouns using chat history
+    |  Returns a list of refined sub-queries
+    v
 VectorStoreIndex Retriever
-    │  Top-K nearest neighbour search over embedded chunks
-    ▼
+    |  Top-10 nearest neighbour search per sub-query
+    v
+Manual Reranker (Cosine Similarity)
+    |  Re-scores candidates, keeps top-3 per sub-query
+    v
 RAGpipeline.gen_response (LLM)
-    │  Formats context + chat history into a prompt
-    │  Generates a grounded answer
-    ▼
+    |  Formats context + chat history into a prompt
+    |  Generates a grounded answer
+    v
 ChatMemoryBuffer (updated)
 ```
 
@@ -41,7 +47,7 @@ ChatMemoryBuffer (updated)
 
 - Python 3.9+
 - [Ollama](https://ollama.com/) installed and running locally
-- Llama 3 model pulled: `ollama pull llama3`
+- Llama 3 pulled: `ollama pull llama3`
 
 ### Python Dependencies
 
@@ -50,9 +56,29 @@ pip install llama-index
 pip install llama-index-llms-ollama
 pip install llama-index-embeddings-huggingface
 pip install sentence-transformers
+pip install fastapi uvicorn   # only needed for the API server
 ```
 
-Or install from a requirements file (see below).
+Or install everything at once:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Project Structure
+
+```
+.
+├── main.py          # Core pipeline: RAGpipeline, QueryRewriter, run_pipeline
+├── ingestion.py     # Document loading, chunking, embedding, and index persistence
+├── prompts.py       # Prompt templates for QA and query rewriting
+├── api.py           # FastAPI app exposing the /query endpoint
+├── storage/         # Persisted vector index (auto-generated on first run)
+├── requirements.txt
+└── README.md
+```
 
 ---
 
@@ -82,18 +108,20 @@ ollama pull llama3
 
 Place your `.txt`, `.pdf`, or other supported files into a directory (e.g., `./docs`).
 
-### 5. Configure and run
+---
 
-In `main.py`, update the `dir_path` to point to your documents folder:
+## CLI Mode
+
+Configure the pipeline in `main.py`:
 
 ```python
 ra = RAGpipeline(
     embedding_model_name="sentence-transformers/all-MiniLM-L6-v2",
-    dir_path="./docs",        # <-- path to your notes/documents
+    dir_path="./docs",   # path to your documents
     chunk_size=200,
     chunk_overlap=20,
     show_node=True,
-    show_mem=True
+    show_mem=False
 )
 ```
 
@@ -103,23 +131,47 @@ Then run:
 python main.py
 ```
 
----
-
-## Usage
-
-Once running, the chatbot enters an interactive loop:
+Once running, enter queries at the prompt:
 
 ```
-ENTER THE PROMPT:__ What are the key ideas in my notes on transformers?
+ENTER PROMPT: What are the key ideas in my notes on transformers?
 ```
 
 Type `quit` to exit.
 
-The **QueryRewriter** automatically breaks your question into cleaner sub-queries before searching, which helps surface more relevant chunks — especially for vague or pronoun-heavy follow-ups like *"Can you expand on that?"*
+---
+
+## API Mode
+
+Start the FastAPI server:
+
+```bash
+uvicorn api:app --reload
+```
+
+On first run, documents are chunked, embedded, and saved to `./storage/`. Subsequent runs load the index from disk.
+
+Query the endpoint:
+
+```bash
+curl -X POST http://localhost:8000/query \
+  -H "Content-Type: application/json" \
+  -d '{"query": "What are the key ideas in my notes on transformers?"}'
+```
+
+Response:
+
+```json
+{
+  "answer": "...",
+  "rewritten_queries": ["...", "..."],
+  "retrieved_chunks": ["...", "..."]
+}
+```
 
 ---
 
-##  Configuration
+## Configuration
 
 | Parameter | Default | Description |
 |---|---|---|
@@ -132,20 +184,7 @@ The **QueryRewriter** automatically breaks your question into cleaner sub-querie
 
 ---
 
-##  Project Structure
+## Notes
 
-```
-.
-├── main.py          # Entry point — pipeline setup and chat loop
-├── prompts.py       # Prompt templates (QA prompt, query rewriter prompt)
-├── requirements.txt
-└── README.md
-```
-
----
-
-
-
-
-
-
+- The `QueryRewriter` includes a retry loop (up to 3 attempts) to handle cases where the LLM returns malformed JSON.
+- LlamaIndex's built-in `as_chat_engine` is initialised but not used for generation. Inspection revealed it duplicates conversation entries in chat history, degrading response quality. Generation is handled manually via `gen_response` instead.
