@@ -144,13 +144,8 @@ The **QueryRewriter** automatically breaks your question into cleaner sub-querie
 
 ---
 
-## Roadmap
 
-- [ ] Support for PDF ingestion
-- [ ] Swap in a faster/smaller reranker
-- [ ] Web UI (Gradio or Streamlit)
-- [ ] Persistent vector store (ChromaDB / Qdrant)
-- [ ] Configurable LLM backend (swap Ollama for OpenAI, etc.)
 
----
+
+
 
