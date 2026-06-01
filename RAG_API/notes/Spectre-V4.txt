@@ -1,0 +1,23 @@
+DEVICE SPECIFICATION SHEET
+Product Name: Spectre-V4 Mobile Neural Processing Unit (mNPU)
+Manufacturer: Aetheron Hardware Labs
+Release Classification: Internal Beta v2.8
+
+[PHYSICAL ARCHITECTURE]
+- Dimensions: 82mm x 45mm x 6.5mm
+- Total Weight: 42 grams
+- Primary Material: Anodized Graphene-Copper Alloy
+- Core Interface Port: Proprietary 24-pin "AetherLink" Male Rail
+
+[POWER & THERMAL ENVIRONMENT]
+- Idle Power Consumption: 0.8 Watts
+- Peak Operational Draw: 14.5 Watts (during concurrent execution ofINT8 quantization matrices)
+- Critical Thermal Threshold: 88 degrees Celsius (Automatic safety throttle triggers at 90C)
+- Required Thermal Dissipation: Minimum 12 W/mK structural thermal pad coverage or external active airflow cooling exceeding 15 CFM.
+- Power Input Constraint: Requires a steady 5.2V DC input rails over pin-out rows 3 and 4.
+
+[COMPUTATIONAL SPECIFICATIONS]
+- Peak Compute Performance: 22.4 Tera-Operations Per Second (TOPS)
+- On-Board Memory: 8GB Ultra-Wideband Embedded SRAM (eSRAM)
+- Internal Host Protocol: PCIe Gen 4 x2 logical translation layer
+- Firmware Revision: Aegis-OS v4.11

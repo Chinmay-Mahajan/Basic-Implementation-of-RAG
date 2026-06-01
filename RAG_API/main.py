@@ -8,6 +8,7 @@ from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.llms import ChatMessage , MessageRole
 from llama_index.core import StorageContext
 from llama_index.core import load_index_from_storage
+from llama_index.retrievers.bm25 import BM25Retriever
 import json 
 import numpy as np 
 import os 
@@ -175,9 +176,6 @@ class QueryRewriter():
             except Exception as e:
                 print(f"Error occurred trying again attempt {i+1} , {e} ")
         return user_query        
-                
- 
-
 
 def run_pipeline(ra , qw , query):
     """

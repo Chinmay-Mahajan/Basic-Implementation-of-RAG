@@ -1,0 +1,20 @@
+COMPANION INTERCONNECT MANUAL
+Product Name: Nexus-Core Modular Docking Station
+Manufacturer: Omnia Logistics & Robotics Corp
+Release Classification: Public Commercial Release
+
+[INTERFACE & MOUNTING BAY]
+- Primary Input Slot: Dual-rail mounting cradle equipped with a universal 24-pin "AetherLink" Female Receiver.
+- Maximum Module Payload Dimensions Allowed: 90mm width, 50mm depth, 8mm height.
+- Structural Weight Limit: Up to 150 grams per bay.
+
+[INTEGRATED POWER SUPPLY UNIT (PSU)]
+- Total Available Power Pool: 40.0 Watts combined across all expansion ports.
+- Native Output Bus Voltages: Dual switching lines providing 5.2V DC and 12.0V DC. 
+- Default Pin Assignment: Pin rows 1 through 6 are mapped to the 5.2V DC step-down transformer line.
+- Maximum Current Rating on 5.2V Line: 3.5 Amperes (Max 18.2 Watts maximum sustained throughput).
+
+[THERMAL & COOLING INFRASTRUCTURE]
+- Enclosure Cooling: Passive aluminum heat-sink structural chassis coupled with an internal variable-speed fan.
+- Active Airflow Output: Dynamically scales from 5.0 CFM up to a maximum profile ceiling of 18.5 CFM based on ambient temperature tracking.
+- Factory Thermal Interface Material: Pre-applied carbon-based matrix tape rated at 14.5 W/mK heat transfer coefficient.
