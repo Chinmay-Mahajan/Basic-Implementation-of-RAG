@@ -25,17 +25,19 @@ class Sender():
         url = f"{self.base_url}{self.end_points['query']}" 
         response = requests.post(url , json = q)
         if (self._check(response)):
-            print("Success")
+            # print("Success")
             data = response.json()
-            print("-"*100 + "RESPONSE" + "-"*100)
+            # print("-"*100 + "RESPONSE" + "-"*100)
             print(data['answer'])
             if (self.show_internal_var):
                 print("="*50 + "retrieved chunks" +"="*50)
                 print(data['"retrieved_chunks"'])
                 print("="*50 + "Re-written queries" +"="*50)
                 print(data['rewritten_queries'])
+            return data['answer']    
         else:
-            print("Post unsuccessfull")        
+            print("Post unsuccessfull")    
+            return None    
 
     def send_to_refresh_endpoint(self):
         url = f"{self.base_url}{self.end_points['refresh']}"
@@ -63,6 +65,3 @@ class Sender():
 
 BASE_URL = "http://127.0.0.1:8000"
 
-s = Sender(base_url=BASE_URL , show_internal_var=False)
-
-s.send_to_refresh_endpoint()
